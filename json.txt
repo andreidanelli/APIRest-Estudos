@@ -1,0 +1,23 @@
+ try {
+            HttpRequest request = HttpRequest.newBuilder()
+            .uri(new URI("http://receitaws.com.br/v1/cnpj/<cnpj>")
+            .headers("Content-Type", "application/json")
+            .GET()
+            .build();
+
+            HttpResponse<String> response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+
+            if(response.statusCode() == 200) {
+                JSONObject json = new JSONObject(response.body());
+                json.getJSONObject("atividade_principal").get("code");
+                System.out.println(json.getString("fantasia"));
+
+            }
+
+
+        } catch (Exception e) {
+            //TODO: handle exception
+            System.out.println(e.getMessage());
+        }
+
+json.getJSONArray("atividade_principal").getJSONObject(0).get("text");
